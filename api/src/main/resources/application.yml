@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    password: 4321
+    url: jdbc:postgresql://localhost:5432/tasktracker
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+        format_sql: true
+    show-sql: true
