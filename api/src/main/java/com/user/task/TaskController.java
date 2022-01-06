@@ -22,23 +22,42 @@ public class TaskController {
     }
 
     @DeleteMapping(value = "/api/tasks/{taskId}")
-    public String deleteTask(@PathVariable Long taskId){
+    public String deleteTask(@PathVariable Long taskId, @RequestHeader("Authorization") String bearerToken){
+        checkTaskOwnership(taskId, bearerToken);
         taskService.deleteTask(taskId);
         return String.format("Deleted task %d", taskId);
     }
 
+
     @PutMapping(value = "api/tasks/{taskId}")
-    public String editTask(@RequestBody Task task, @PathVariable Long taskId){
+    public String editTask(@RequestBody Task task, @PathVariable Long taskId, @RequestHeader("Authorization") String bearerToken){
+        checkTaskOwnership(taskId, bearerToken);
         return taskService.editTask(task, taskId);
     }
 
     @GetMapping(value = "api/tasks/{taskId}")
-    public String getTask(@PathVariable Long taskId){
+    public String getTask(@PathVariable Long taskId, @RequestHeader("Authorization") String bearerToken){
+        checkTaskOwnership(taskId, bearerToken);
         return taskService.getTask(taskId);
     }
 
     @GetMapping(value = "api/tasks/user/{username}")
-    public List<Task> getTasksByUser(@PathVariable String username){
+    public List<Task> getTasksByUser(@PathVariable String username, @RequestHeader("Authorization") String bearerToken){
+        checkTaskOwnership(username, bearerToken);
         return taskService.getTasks(username);
+    }
+
+    private void checkTaskOwnership(Long taskId, String bearerToken) {
+        String owner = auth.getTokenSubject(bearerToken);
+        if (!owner.equals(taskService.getObjectTask(taskId).getUsername())){
+            throw new IllegalStateException("You're not the owner of that task");
+        }
+    }
+
+    private void checkTaskOwnership(String username, String bearerToken) {
+        String owner = auth.getTokenSubject(bearerToken);
+        if (!owner.equals(username)){
+            throw new IllegalStateException("You're not the owner of that task");
+        }
     }
 }

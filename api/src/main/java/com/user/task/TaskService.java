@@ -36,6 +36,14 @@ public class TaskService {
         return taskRepository.findById(taskId).toString();
     }
 
+    public Task getObjectTask(Long taskId){
+        Optional<Task> t = taskRepository.findById(taskId);
+        if (!t.isPresent()){
+            throw new IllegalArgumentException("Task does not exist.");
+        }
+        return t.get();
+    }
+
     public List<Task> getTasks(String username){
         return taskRepository.findAllByUsername(username);
     }
