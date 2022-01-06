@@ -1,5 +1,6 @@
 package com.user.task;
 
+import com.user.security.JWTAuthorizationFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +11,13 @@ import java.util.List;
 @RequestMapping
 public class TaskController {
     private final TaskService taskService;
+    private JWTAuthorizationFilter auth;
 
     @PostMapping(value = "/api/tasks")
-    public String addTask(@RequestBody Task task){
+    public String addTask(@RequestBody Task task, @RequestHeader("Authorization") String bearerToken){
+        task.setUsername(auth.getTokenSubject(bearerToken));
         taskService.addTask(task);
+        System.out.println("Posting task");
         return task.toString();
     }
 

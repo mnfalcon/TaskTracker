@@ -1,9 +1,11 @@
 package com.user.appuser;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -13,7 +15,7 @@ import java.util.Collections;
 @Setter
 @NoArgsConstructor
 @Entity
-public class AppUser{
+public class AppUser implements UserDetails {
 
     @Id
     @SequenceGenerator(name = "user_gen", sequenceName = "user_sequence", allocationSize = 1)
@@ -22,10 +24,46 @@ public class AppUser{
     private String username;
     private String email;
     private String password;
+    private String Token;
 
     public AppUser(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority sga = new SimpleGrantedAuthority("USER");
+        return Collections.singletonList(sga);
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
