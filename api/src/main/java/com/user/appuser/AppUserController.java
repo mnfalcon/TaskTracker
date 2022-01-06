@@ -13,8 +13,8 @@ public class AppUserController {
     private final UserRepository userRepository;
 
     @PostMapping("/api/login")
-    public LoginResponse login(@RequestBody AppUserLoginRequest request) {
-        return new LoginResponse(appUserService.login(request.getUsername(), request.getPassword()).getToken());
+    public AppUser login(@RequestBody AppUserLoginRequest request) {
+        return appUserService.login(request.getUsername(), request.getPassword());
     }
 
 

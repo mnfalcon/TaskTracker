@@ -9,11 +9,11 @@ function App() {
 //   let token = getToken()
   //const [token, setToken] = useState();
   const { token, setToken } = useToken();
-    console.log(token)
   if (!token) {
-    return <Login setToken={setToken} />;
-  }
-
+      return <Login setToken={setToken} />;
+    }
+    
+    console.log(JSON.parse(sessionStorage.getItem('token')).token)
   return (
     <>
       <div className="container">
@@ -21,7 +21,7 @@ function App() {
         <BrowserRouter>
           <Routes>
 
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </BrowserRouter>
       </div>

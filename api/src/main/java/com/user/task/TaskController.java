@@ -41,9 +41,11 @@ public class TaskController {
         return taskService.getTask(taskId);
     }
 
-    @GetMapping(value = "api/tasks/user/{username}")
-    public List<Task> getTasksByUser(@PathVariable String username, @RequestHeader("Authorization") String bearerToken){
-        checkTaskOwnership(username, bearerToken);
+    @GetMapping(value = "api/tasks")
+//    @CrossOrigin( origins = "http://localhost:3000/")
+    public List<Task> getTasksByUser(/*@PathVariable String username,*/ @RequestHeader("Authorization") String bearerToken){
+//        checkTaskOwnership(username, bearerToken);
+        String username = auth.getTokenSubject(bearerToken);
         return taskService.getTasks(username);
     }
 

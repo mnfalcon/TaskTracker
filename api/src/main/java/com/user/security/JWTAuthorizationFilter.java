@@ -12,13 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 @Configuration
@@ -31,6 +36,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         System.out.println("Doing internal filter");
+
         try {
             if (checkJWTToken(request, response)) {
                 Claims claims = validateToken(request);
@@ -77,6 +83,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     private boolean checkJWTToken(HttpServletRequest request, HttpServletResponse res) {
         System.out.println("Checking JWT");
         String authenticationHeader = request.getHeader(HEADER);
+
+        System.out.println(authenticationHeader);
         if (authenticationHeader == null /*|| !authenticationHeader.startsWith(PREFIX)*/)
 //        if (!authenticationHeader.contains(PREFIX))
             return false;
@@ -105,6 +113,24 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     public String getTokenSubject(String token){
         String jwtToken = token.replace(PREFIX, "");
         return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwtToken).getBody().getSubject();
+    }
+
+    @Bean
+    public FilterRegistrationBean  filterRegistrationBean() {
+        final CorsConfiguration config = new CorsConfiguration();
+
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+
+        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+
+        return bean;
     }
 
 }

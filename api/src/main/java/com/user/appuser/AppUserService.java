@@ -57,7 +57,7 @@ public class AppUserService implements UserDetailsService {
         }
         String token = jwtAuthorizationFilter.getJWTToken(username);
         user.setToken(token);
-
+        user.setPassword("");
         return user;
     }
 
