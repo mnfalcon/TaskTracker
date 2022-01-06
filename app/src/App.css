@@ -24,7 +24,7 @@
   color: white;
 }
 
-.container, form {
+/* .container, form {
     justify-content: center;
     align-items: center;
     display: flex;
@@ -32,10 +32,15 @@
     margin: 2%;
 }
 
+.task {
+    display: flex;
+    align-items: center;
+}
+
 input, label {
     max-width: 300px;
     margin-bottom: 1%;
-}
+} */
 
 .App-link {
   color: #61dafb;

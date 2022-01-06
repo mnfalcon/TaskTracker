@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import App from "../App"
 
 const Login = ({setToken}) => {
     const [username, setUserName] = useState();

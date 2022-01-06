@@ -1,5 +1,6 @@
 package com.user.task;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,7 +23,8 @@ public class Task {
     private String title;
     @Column(nullable = true)
     private String description;
-    private boolean isCompleted = false;
+    @JsonProperty("isCompleted")
+    private boolean isCompleted;
 
     public Task(String username, String title, String description, boolean isCompleted) {
         this.username = username;

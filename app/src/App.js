@@ -1,37 +1,50 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { useState, useEffect } from 'react'
 import Home from "./components/Home"
 import Login from "./components/Login"
-import React, { useState } from "react"
 import useToken from './useToken';
+import AddTask from './components/AddTask'
 
 function App() {
-//   let token = getToken()
-  //const [token, setToken] = useState();
+
   const { token, setToken } = useToken();
+  
+  
   if (!token) {
       return <Login setToken={setToken} />;
     }
     
     console.log(JSON.parse(sessionStorage.getItem('token')).token)
+
+
+    const addTask = async (task) => {
+        const res = await fetch('http://localhost:8080/api/tasks', {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+            'Authorization': getToken()
+          },
+          body: JSON.stringify(task),
+        })
+
+    }
+
+    
   return (
     <>
+        <BrowserRouter key="main" id="main">
       <div className="container">
         <h1>Task Tracker</h1>
-        <BrowserRouter>
+        <AddTask onSubmitForm={addTask}/>
           <Routes>
 
             <Route path="/" element={<Home />} />
           </Routes>
-        </BrowserRouter>
       </div>
+        </BrowserRouter>
     </>
   );
-}
-
-function setToken(userToken) {
-  sessionStorage.setItem("token", JSON.stringify(userToken))
-  getToken()
 }
 
 function getToken() {
@@ -40,5 +53,6 @@ function getToken() {
   console.log("getting token")
   return userToken?.token
 }
+
 
 export default App;
