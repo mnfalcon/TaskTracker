@@ -18,28 +18,28 @@ and then start the react app on a new terminal
 - cd app
 - npm start
 
-api port: 8080
+### api port: 8080
+### react port: 3000
 
-react port: 3000
-
-Default login credentials:
+## Default login credentials:
 - username: user
 - password: password
 
-To register a new user you can use the API sending a JSON to /api/register with the fields:
+## To register a new user you can use the API sending a JSON to /api/register with the fields:
 - username
 - email
 - password
 
-###There's no interface to register, you can do it through Postman
+### There's no interface to register, you can do it through Postman
 
 Then you can login either via postman on port 8080 or through localhost:3000 on the browser
 When logged in through postman, the api will send back a Bearer token, set that Authorization on every other request through postman
 
-##Supported API endpoints through port 8080:
+## Supported API endpoints through port 8080:
 /api/register [POST]
 /api/login [POST]
 /api/tasks [POST] [GET]
 /api/tasks/{taskId} [POST] [GET] [PUT]
 
+## How to edit a task
 To edit a task, you need to place the new data into the AddTask form and then click on the Edit button of the task you want to edit
