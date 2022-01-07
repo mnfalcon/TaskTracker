@@ -12,7 +12,7 @@ Open command line and
 - mvn clean install
 - cd target
 - Run the api with java -jar ./user-0.0.1-SNAPSHOT.jar
-and then start the react app
+and then start the react app on a new terminal
 - npm install
 go back two folders (cd - x2)
 - cd app
