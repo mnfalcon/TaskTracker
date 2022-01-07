@@ -5,13 +5,9 @@ import ReactDOM from 'react-dom'
 
 
 const Button = ({color, text, onClick}) => {
-    const [clickState, setClick] = useState()
     const onButtonClicked = async () => {
         
-        let r = await onClick()
-        setClick(r)
-        // ReactDOM.render(document.getElementById('main'))
-        // this.setState({s: "changed"})
+        await onClick()
     }
 
     return (<button onClick={onButtonClicked} style={{ backgroundColor: color}} 

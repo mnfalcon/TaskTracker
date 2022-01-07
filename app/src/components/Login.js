@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Login = ({setToken}) => {
+const Login = ({setToken, action}) => {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
@@ -11,18 +11,28 @@ const Login = ({setToken}) => {
           username,
           password,
         }).then(s => setToken(s));
+        action()
       }
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Login</h2>
-            <label>username</label>
-            <input type="text" placeholder="username" onChange={e => setUserName(e.target.value)}/>
-            <label>password</label>
-            <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)}/>
-            <input type="submit"/>
-        </form>
+        <div className="container">
+            <form onSubmit={handleSubmit} className="add-form">
+                <h3>Login</h3>
+                <div className="form-control">
+                    <label>username</label>
+                    <input type="text" placeholder="username" onChange={e => setUserName(e.target.value)}/>
+                </div>
+                <div className="form-control">
+                    <label>password</label>
+                    <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)} className="form-control"/>
+                </div>
+                <div class="loginButtons">
+                    <input type="submit" value="Login" className="btn"/>
+                    <input type="submit" value="Register" className="btn"/>
+                </div>
+            </form>
+        </div>
     )
 }
 

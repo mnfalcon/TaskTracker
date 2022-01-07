@@ -66,6 +66,16 @@ body {
     align-items: center;
 }
 
+#add-app {
+    
+}
+
+.formHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .buttonsContainer {
     margin-left: auto; 
     margin-right: 0;

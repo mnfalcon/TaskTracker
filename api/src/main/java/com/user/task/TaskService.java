@@ -3,6 +3,7 @@ package com.user.task;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +46,8 @@ public class TaskService {
     }
 
     public List<Task> getTasks(String username){
-        return taskRepository.findAllByUsername(username);
+        List<Task> list = taskRepository.findAllByUsername(username);
+        Collections.sort(list);
+        return list;
     }
 }

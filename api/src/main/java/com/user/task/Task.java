@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @ToString()
 @Entity
-public class Task {
+public class Task implements Comparable<Task>{
 
     @Id
     @SequenceGenerator(name = "tasks_gen", sequenceName = "tasks_sequence", allocationSize = 1)
@@ -31,5 +31,10 @@ public class Task {
         this.title = title;
         this.description = description;
         this.isCompleted = isCompleted;
+    }
+
+    @Override
+    public int compareTo(Task o) {
+        return (int) (this.id - o.getId());
     }
 }
