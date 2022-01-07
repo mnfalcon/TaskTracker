@@ -26,3 +26,5 @@ Supported API endpoints through port 8080:
 /api/login [POST]
 /api/tasks [POST] [GET]
 /api/tasks/{taskId} [POST] [GET] [PUT]
+
+To edit a task, you need to place the new data into the AddTask form and then click on the Edit button of the task you want to edit
