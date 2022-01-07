@@ -7,6 +7,18 @@ NPM 6.14.10
 Apache Maven 3.8.4
 PostgreSQL 14.1
 
+Open command line and 
+- cd api
+- mvn clean install
+- cd target
+- Run the api with java -jar ./user-0.0.1-SNAPSHOT.jar
+and then start the react app
+- npm install
+go back two folders (cd - x2)
+- cd app
+- npm start
+
+
 Default login credentials:
 - username: user
 - password: password
