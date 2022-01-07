@@ -36,10 +36,10 @@ Then you can login either via postman on port 8080 or through localhost:3000 on 
 When logged in through postman, the api will send back a Bearer token, set that Authorization on every other request through postman
 
 ## Supported API endpoints through port 8080:
-/api/register [POST]
-/api/login [POST]
-/api/tasks [POST] [GET]
-/api/tasks/{taskId} [POST] [GET] [PUT]
+- /api/register [POST]
+- /api/login [POST]
+- /api/tasks [POST] [GET]
+- /api/tasks/{taskId} [POST] [GET] [PUT]
 
 ## How to edit a task
 To edit a task, you need to place the new data into the AddTask form and then click on the Edit button of the task you want to edit
