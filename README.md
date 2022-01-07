@@ -39,7 +39,11 @@ When logged in through postman, the api will send back a Bearer token, set that 
 - /api/register [POST]
 - /api/login [POST]
 - /api/tasks [POST] [GET]
-- /api/tasks/{taskId} [POST] [GET] [PUT]
+- /api/tasks/{taskId}  [GET] [PUT]
 
 ## How to edit a task
 To edit a task, you need to place the new data into the AddTask form and then click on the Edit button of the task you want to edit
+
+## Front view
+![img](https://github.com/mnfalcon/TaskTracker/blob/master/login.png?raw=true)
+![im2](https://github.com/mnfalcon/TaskTracker/blob/master/home.png?raw=true)
