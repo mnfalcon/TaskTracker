@@ -13,7 +13,7 @@ public class RegistrationService {
     private final AppUserService userService;
     private final UserRepository userRepository;
 
-    public String register(RegistrationRequest request){
+    public AppUser register(RegistrationRequest request){
         boolean usernameExists = userRepository.findByUsername(request.getUsername()).isPresent();
         if (usernameExists){
             throw new IllegalStateException("Username already exists");

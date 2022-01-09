@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom'
 
 
 const Button = ({color, text, onClick}) => {
-    const onButtonClicked = async () => {
-        
+    const onButtonClicked = async (e) => {
+        e.preventDefault()
         await onClick()
     }
 

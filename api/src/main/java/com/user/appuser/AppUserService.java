@@ -29,7 +29,7 @@ public class AppUserService implements UserDetailsService {
     private JWTAuthorizationFilter jwtAuthorizationFilter;
 
 
-    public String signUpUser(AppUser user){
+    public AppUser signUpUser(AppUser user){
         boolean userExists = appUserRepository.findByUsername(user.getUsername()).isPresent();
         if (userExists){
             throw new IllegalStateException("Username already exists.");
@@ -39,8 +39,11 @@ public class AppUserService implements UserDetailsService {
 
 //        user.setPassword(encodedPassword);
         appUserRepository.save(user);
+        user.setPassword("");
+        String token = jwtAuthorizationFilter.getJWTToken(user.getUsername());
+        user.setToken(token);
 
-        return "User registered successfully.";
+        return user;
     }
 
     public AppUser login(String username, String password){

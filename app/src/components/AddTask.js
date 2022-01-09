@@ -21,7 +21,6 @@ const AddTask = ({ onSubmitForm, setToken }) => {
 
   return (
     <>
-      <form className="add-form" onSubmit={onSubmit}>
         <div className="formHeader">
           <h2>Add a task</h2>
           <Button
@@ -30,6 +29,7 @@ const AddTask = ({ onSubmitForm, setToken }) => {
             text="Log Out"
           />
         </div>
+      <form className="add-form" onSubmit={onSubmit}>
         <div className="form-control">
           <label>Title</label>
           <input

@@ -12,8 +12,7 @@ function App() {
 
   const getTasks = async () => {
     const tasksFromServer = await fetchTasks();
-    let temp = tasksFromServer.sort((a, b) => a.id < b.id)
-    setTasks(temp);
+    setTasks(tasksFromServer);
   };
 
   useEffect(() => {
@@ -23,8 +22,6 @@ function App() {
   if (!token) {
     return <Login setToken={setToken} action={getTasks} />;
   }
-
-  console.log(JSON.parse(sessionStorage.getItem("token")).token);
 
   const addTask = async (task) => {
     const res = await fetch("http://localhost:8080/api/tasks", {
@@ -39,7 +36,6 @@ function App() {
   };
 
   const Delete = async (id) => {
-    console.log(JSON.parse(sessionStorage.getItem("token")).token);
     const res = await fetch(`http://localhost:8080/api/tasks/${id}`, {
       method: "DELETE",
       headers: {
@@ -87,7 +83,6 @@ function App() {
 function getToken() {
   const tokenString = sessionStorage.getItem("token");
   const userToken = JSON.parse(tokenString);
-  console.log("getting token");
   return userToken?.token;
 }
 
