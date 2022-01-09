@@ -7,12 +7,13 @@ Task tracker project using ReactJS and Spring Boot
 - Apache Maven 3.8.4
 - PostgreSQL 14.1
 
-Open command line and 
+## Starting the app on pc
+### Open command line and 
 - cd api
 - mvn clean install
 - cd target
 - Run the api with java -jar ./user-0.0.1-SNAPSHOT.jar
-and then start the react app on a new terminal
+### and then start the react app on a new terminal
 - npm install
 - go back two folders (cd - x2)
 - cd app
