@@ -47,19 +47,6 @@ function App() {
   };
 
   const Edit = async (id) => {
-      let title = document.getElementById('inputTitle').value
-      let description = document.getElementById('inputDescription').value
-      let isCompleted = document.getElementById('inputCompleted').checked
-
-      
-        const res = await fetch(`http://localhost:8080/api/tasks/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: getToken(),
-          },
-          body: JSON.stringify({title, description, isCompleted}),
-        });
         getTasks()
         
     }
@@ -99,8 +86,10 @@ async function fetchTasks() {
       return data;
     })
     .catch((e) => console.log(e));
-  let data = await rawData.json();
-  return data;
+    if (rawData.ok){
+        let data = await rawData.json();
+        return data;
+    }
 }
 
 export default App;
