@@ -26,8 +26,13 @@ public class TaskService {
             throw new IllegalStateException("Task does not exist.");
         }
         Task oldTask = optTask.get();
-        oldTask.setTitle(newTask.getTitle());
-        oldTask.setDescription(newTask.getDescription());
+
+        if(!newTask.getTitle().equals("")){
+            oldTask.setTitle(newTask.getTitle());
+        }
+        if (!newTask.getDescription().equals("")){
+            oldTask.setDescription(newTask.getDescription());
+        }
         oldTask.setCompleted(newTask.isCompleted());
         taskRepository.save(oldTask);
         return oldTask.toString();
