@@ -1,24 +1,13 @@
 package com.user.appuser;
 
 import com.user.security.JWTAuthorizationFilter;
-import io.jsonwebtoken.security.Keys;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-
-import java.security.Key;
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -29,7 +18,7 @@ public class AppUserService implements UserDetailsService {
     private JWTAuthorizationFilter jwtAuthorizationFilter;
 
 
-    public AppUser signUpUser(AppUser user){
+    public LoginResponse signUpUser(AppUser user){
         boolean userExists = appUserRepository.findByUsername(user.getUsername()).isPresent();
         if (userExists){
             throw new IllegalStateException("Username already exists.");
@@ -43,10 +32,10 @@ public class AppUserService implements UserDetailsService {
         String token = jwtAuthorizationFilter.getJWTToken(user.getUsername());
         user.setToken(token);
 
-        return user;
+        return new LoginResponse(token, user.getUsername());
     }
 
-    public AppUser login(String username, String password){
+    public LoginResponse login(String username, String password){
         Optional<AppUser> optUser = appUserRepository.findByUsername(username);
         if (!optUser.isPresent()){
             throw new IllegalStateException("Username does not exist");
@@ -59,9 +48,9 @@ public class AppUserService implements UserDetailsService {
             throw new IllegalStateException("Password is incorrect");
         }
         String token = jwtAuthorizationFilter.getJWTToken(username);
-        user.setToken(token);
-        user.setPassword("");
-        return user;
+//        user.setToken(token);
+//        user.setPassword("");
+        return new LoginResponse(token, username);
     }
 
 //    private String getJWTToken(String username) {
