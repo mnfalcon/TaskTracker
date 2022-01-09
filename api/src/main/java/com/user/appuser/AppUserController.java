@@ -19,7 +19,7 @@ public class AppUserController {
 
     @PostMapping("/api/register")
     public LoginResponse register(@RequestBody RegistrationRequest request){
-        return appUserService.signUpUser( new AppUser(request.getUsername(), request.getPassword(), request.getEmail()));
+        return appUserService.signUpUser( new AppUser(request.getUsername(), request.getEmail(),request.getPassword()));
     }
 
 

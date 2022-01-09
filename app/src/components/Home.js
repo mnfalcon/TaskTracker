@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 
 const Home = ({tasks, deleteTaskFunc, editTaskFunc}) => {
 
+    if (!tasks){
+        return null
+    }
   return (
     <div>
       {tasks.map((task) => (

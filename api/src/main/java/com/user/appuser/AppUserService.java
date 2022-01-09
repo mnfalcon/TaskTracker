@@ -41,7 +41,6 @@ public class AppUserService implements UserDetailsService {
             throw new IllegalStateException("Username does not exist");
         }
         AppUser user = optUser.get();
-
         if (!user.getPassword().equals(password)){
             System.out.println(user.getPassword());
             System.out.println(password);
