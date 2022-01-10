@@ -26,12 +26,15 @@ Task tracker project using ReactJS and Spring Boot
 - username: user
 - password: password
 
+
+
+## (* Update) now there's a form to register
 ## To register a new user you can use the API sending a JSON to /api/register with the fields:
 - username
 - email
 - password
 
-### There's no interface to register, you can do it through Postman
+<s>### ~~There's no interface to register, you can do it through Postman~~</s>
 
 Then you can login either via postman on port 8080 or through localhost:3000 on the browser
 When logged in through postman, the api will send back a Bearer token, set that Authorization on every other request through postman
@@ -42,9 +45,13 @@ When logged in through postman, the api will send back a Bearer token, set that 
 - /api/tasks [POST] [GET]
 - /api/tasks/{taskId}  [GET] [PUT]
 
-## How to edit a task
-To edit a task, you need to place the new data into the AddTask form and then click on the Edit button of the task you want to edit
 
+
+### (* Update) now each task has it's own form. The form's display toggles with the edit button.
+## How to edit a task
+<s>~~To edit a task, you need to place the new data into the AddTask form and then click on the Edit button of the task you want to edit~~</s>
+
+### (* Update) the design has been updated a little bit
 ## Front view
 ![img](https://github.com/mnfalcon/TaskTracker/blob/master/login.png?raw=true)
 ![im2](https://github.com/mnfalcon/TaskTracker/blob/master/home.png?raw=true)
