@@ -20,7 +20,7 @@ const Task = ({ task, onDelete, onEdit}) => {
     let description = document.getElementById('inputDescription' + task.id).value
     let isCompleted = document.getElementById('inputCompleted' + task.id).checked
 
-      const res = await fetch(`http://localhost:8080/api/tasks/${task.id}`, {
+      const res = await fetch(`/api/tasks/${task.id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

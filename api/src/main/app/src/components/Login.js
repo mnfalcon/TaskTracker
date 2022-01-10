@@ -86,7 +86,7 @@ const Login = ({setToken, action}) => {
 
 async function loginUser(credentials) {
 
-    return fetch('http://localhost:8080/api/login', {
+    return fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -99,7 +99,7 @@ async function loginUser(credentials) {
    }
 
    async function registerUser(credentials) {
-    return fetch('http://localhost:8080/api/register', {
+    return fetch('/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
