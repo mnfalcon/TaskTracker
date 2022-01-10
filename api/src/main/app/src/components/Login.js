@@ -78,8 +78,8 @@ const Login = ({setToken, action}) => {
 
     return (
         <div className="container" id="loginForm">
-            {a}
-            {showRegister ? b : ""}
+            {/* {a} */}
+            {showRegister ? b : a}
         </div>
     )
 }
