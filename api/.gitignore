@@ -4,6 +4,15 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+api/gulp.js
+api/node_modules/
+api/package-lock.json
+api/package.json
+api/root/
+api/src/main/resources/static/
+api/src/main/ui/
+
+
 ### STS ###
 .apt_generated
 .classpath
