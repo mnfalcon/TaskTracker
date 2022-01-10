@@ -57,7 +57,7 @@ function App() {
       <BrowserRouter key="main" id="main">
         <div className="container">
           <h1>Task Tracker</h1>
-          <h3 className="userHello">Hello, {JSON.parse(sessionStorage.getItem("token")).username}</h3>
+          <h3>Hello, {JSON.parse(sessionStorage.getItem("token")).username}</h3>
           <AddTask onSubmitForm={addTask} setToken={setToken}/>
           <Routes>
             <Route path="/" element={<Home tasks={tasks} deleteTaskFunc={Delete} editTaskFunc={Edit}/>} />

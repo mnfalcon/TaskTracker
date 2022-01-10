@@ -22,7 +22,7 @@ const AddTask = ({ onSubmitForm, setToken }) => {
   return (
     <>
         <div className="formHeader">
-          <h2>Add a new task</h2>
+          <h2>Add a task</h2>
           <Button
             onClick={logout}
             color="black"
@@ -61,7 +61,6 @@ const AddTask = ({ onSubmitForm, setToken }) => {
         </div>
 
         <input
-          style={{backgroundColor: "steelblue"}}
           type="submit"
           value="Add Task"
           className="form-control input btn btn-block"

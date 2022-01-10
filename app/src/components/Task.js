@@ -12,7 +12,6 @@ const Task = ({ task, onDelete, onEdit}) => {
 //   const isCompleted = task.isCompleted;
   const [showEditForm, setShowEditForm] = useState(false);
   const [EditButtonText, setEditButtonText] = useState("Edit")
-  const [editButtonColor, setEditButtonColor] = useState("black")
 
   const EditTask = async (e) => {
       e.preventDefault()
@@ -35,11 +34,9 @@ const Task = ({ task, onDelete, onEdit}) => {
   const displayForm = () => {
     if (!showEditForm){
         setEditButtonText("Cancel")
-        setEditButtonColor("steelblue")
     }
     else {
         setEditButtonText("Edit")
-        setEditButtonColor("black")
     }
     setShowEditForm(!showEditForm)
   }
@@ -91,19 +88,17 @@ const Task = ({ task, onDelete, onEdit}) => {
             defaultChecked={isCompleted}
             type="checkbox"
           />
-          <div className="taskText">
-            <h3>{task.title}</h3>
-            <p>{task.description}</p>
-          </div>
+          <h3>{task.title}</h3>
           <div className="buttonsContainer">
             <Button
               color="darkred"
               text="Delete"
               onClick={() => onDelete(task.id)}
-              />
-            <Button color={editButtonColor} text={EditButtonText} onClick={displayForm} />
+            />
+            <Button color="black" text={EditButtonText} onClick={displayForm} />
           </div>
         </div>
+        <p>{task.description}</p>
         {showEditForm ? form : ""}
       </div>
 
