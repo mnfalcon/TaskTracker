@@ -7,7 +7,7 @@ Task tracker project using ReactJS and Spring Boot
 - Apache Maven 3.8.4
 - PostgreSQL 14.1
 
-## Starting the app on pc
+## Starting the app on pc (this will be updated soon, please checkout the live version on heroku at https://spretasktracker.herokuapp.com/)
 ### Open command line and 
 - cd api
 - mvn clean install
