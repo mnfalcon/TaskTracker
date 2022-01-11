@@ -1,5 +1,5 @@
 # TaskTracker
-Task tracker project using ReactJS and Spring Boot
+Task tracker project using ReactJS and Spring Boot. The deployment branch is the one used for the live version at heroku.
 
 ## Requirements
 - Java Runtime Version 11
