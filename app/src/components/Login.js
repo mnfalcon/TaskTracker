@@ -9,7 +9,7 @@ const Login = ({setToken, action}) => {
     const [password2, setPassword2] = useState();
     const [email, setEmail] = useState();
     const [showRegister, setShowRegister] = useState(false);
-    const [toggleRegisterForm, setRegisterButtonText] = useState("Already have an account? Log in")
+    const [toggleRegisterForm, setRegisterButtonText] = useState("Create an account")
     const [passwordsCheck, setPasswordsCheck] = useState("")
 
     const handleSubmitLogin = async e => {
