@@ -24,7 +24,7 @@ function App() {
   }
 
   const addTask = async (task) => {
-    const res = await fetch("/api/tasks", {
+    const res = await fetch("http://localhost:8080/api/tasks", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -36,7 +36,7 @@ function App() {
   };
 
   const Delete = async (id) => {
-    const res = await fetch(`/api/tasks/${id}`, {
+    const res = await fetch(`http://localhost:8080/api/tasks/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -75,7 +75,7 @@ function getToken() {
 }
 
 async function fetchTasks() {
-  let rawData = await fetch("/api/tasks", {
+  let rawData = await fetch("http://localhost:8080/api/tasks", {
     method: "GET",
     credentials: "include",
     headers: {

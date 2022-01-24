@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Button from './Button'
 
 const Login = ({setToken, action}) => {
-    const [username, setUserName] = useState();
+    const [username, setUserName] = useState("");
+    const [usernameCheck, setUserNameCheck] = useState("");
     const [password, setPassword] = useState();
+    const [password2, setPassword2] = useState();
     const [email, setEmail] = useState();
     const [showRegister, setShowRegister] = useState(false);
-    const [toggleRegisterForm, setRegisterButtonText] = useState("Register")
+    const [toggleRegisterForm, setRegisterButtonText] = useState("Already have an account? Log in")
+    const [passwordsCheck, setPasswordsCheck] = useState("")
 
     const handleSubmitLogin = async e => {
         e.preventDefault();
@@ -18,23 +22,34 @@ const Login = ({setToken, action}) => {
       }
 
       const handleSubmitRegister = async e => {
-        e.preventDefault();
-        const res = await registerUser({
-          username,
-          email,
-          password,
-        }).then(s => 
-            setToken(s));
-        action()
+        // e.preventDefault();
+        if (username === "" || username.length < 4){
+          setUserNameCheck("Please provide a valid username. Length > 4")
+          return
+        }
+
+        if (password === password2 && password.length > 5) {
+          setPasswordsCheck("")
+           await registerUser({
+            username,
+            email,
+            password,
+          }).then(s => 
+              setToken(s));
+          action()
+        }
+        else {
+          setPasswordsCheck("Passwords don't match or Length < 4!")
+        }
 
       }
 
       const displayRegister = () =>{
           if (!showRegister){
-              setRegisterButtonText("Collapse Register form")
+            setRegisterButtonText("Already have an account? Log in")
           }
           else {
-            setRegisterButtonText("Register")
+              setRegisterButtonText("Create an account")
           }
           setShowRegister(!showRegister)
     }
@@ -52,7 +67,7 @@ const Login = ({setToken, action}) => {
         </div>
         <div className="loginButtons">
             <input type="submit" value="Login" className="btn"/>
-            <input type="button" value={toggleRegisterForm} className="btn" onClick={displayRegister} />
+            <Button text={toggleRegisterForm} onClick={displayRegister} />
         </div>
     </form>)
 
@@ -61,6 +76,7 @@ const Login = ({setToken, action}) => {
         <div className="form-control">
             <label>username</label>
             <input type="text" placeholder="username" onChange={e => setUserName(e.target.value)}/>
+            <p style={{color: "red"}} >{usernameCheck}</p>
         </div>
         <div className="form-control">
             <label>email</label>
@@ -68,18 +84,25 @@ const Login = ({setToken, action}) => {
         </div>
         <div className="form-control">
             <label>password</label>
-            <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)} className="form-control"/>
+            <input type="password" placeholder="password" onChange={e => {setPassword(e.target.value)}} className="form-control"/>
+        </div>
+        <div className="form-control">
+            <label>re-enter password</label>
+            <input type="password" placeholder="password" onChange={e => {setPassword2(e.target.value)}} className="form-control"/>
+            <p style={{color: "red"}} >{passwordsCheck}</p>
         </div>
         <div className="loginButtons">
-            <input type="submit" value="Register" className="btn"/>
+            <Button text="Register" onClick={handleSubmitRegister}/>
+            <Button text={toggleRegisterForm} color="#295D8A" onClick={displayRegister} />
         </div>
     </form>)
     
 
     return (
         <div className="container" id="loginForm">
-            {a}
-            {showRegister ? b : ""}
+            <h4 style={{color: "red"}}>Warning</h4>
+            <p style={{color: "red", fontWeight: "bold"}}>This is a work in progress and a learning project. Please do not input any sensitive information.</p>
+            {showRegister ? b : a}
         </div>
     )
 }

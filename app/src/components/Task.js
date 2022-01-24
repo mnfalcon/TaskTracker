@@ -1,5 +1,7 @@
 import Button from "./Button";
 import AddTask from "./AddTask"
+import {TiTick} from 'react-icons/ti'
+import {ImCross} from 'react-icons/im'
 
 import { useState, useEffect } from 'react'
 
@@ -9,7 +11,7 @@ const Task = ({ task, onDelete, onEdit}) => {
   const [description, setDescription] = useState("");
   const [isCompleted, setIsCompleted] = useState(false);
   const elementId = "key" + task.id;
-//   const isCompleted = task.isCompleted;
+  const isCompletedView = task.isCompleted;
   const [showEditForm, setShowEditForm] = useState(false);
   const [EditButtonText, setEditButtonText] = useState("Edit")
   const [editButtonColor, setEditButtonColor] = useState("black")
@@ -86,11 +88,9 @@ const Task = ({ task, onDelete, onEdit}) => {
     <>
       <div className="task" key={elementId} id={elementId}>
         <div className="taskContainer">
-          <input
-            className="form-control form-control-check"
-            defaultChecked={isCompleted}
-            type="checkbox"
-          />
+          <div>
+            {isCompletedView ? <TiTick size={"2em"} color={"green"}/> : /*<ImCross size={"1em"} color={"red"}/>*/ ""}
+          </div>
           <div className="taskText">
             <h3>{task.title}</h3>
             <p>{task.description}</p>
