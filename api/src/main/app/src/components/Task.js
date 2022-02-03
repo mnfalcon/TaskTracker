@@ -14,6 +14,7 @@ const Task = ({ task, onDelete, onEdit}) => {
   const isCompletedView = task.isCompleted;
   const [showEditForm, setShowEditForm] = useState(false);
   const [EditButtonText, setEditButtonText] = useState("Edit")
+  const [editButtonColor, setEditButtonColor] = useState("black")
 
   const EditTask = async (e) => {
       e.preventDefault()
@@ -21,7 +22,7 @@ const Task = ({ task, onDelete, onEdit}) => {
     let description = document.getElementById('inputDescription' + task.id).value
     let isCompleted = document.getElementById('inputCompleted' + task.id).checked
 
-      const res = await fetch(`http://localhost:8080/api/tasks/${task.id}`, {
+      const res = await fetch(`/api/tasks/${task.id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
@@ -36,9 +37,11 @@ const Task = ({ task, onDelete, onEdit}) => {
   const displayForm = () => {
     if (!showEditForm){
         setEditButtonText("Cancel")
+        setEditButtonColor("steelblue")
     }
     else {
         setEditButtonText("Edit")
+        setEditButtonColor("black")
     }
     setShowEditForm(!showEditForm)
   }
@@ -97,11 +100,10 @@ const Task = ({ task, onDelete, onEdit}) => {
               color="darkred"
               text="Delete"
               onClick={() => onDelete(task.id)}
-            />
-            <Button color="black" text={EditButtonText} onClick={displayForm} />
+              />
+            <Button color={editButtonColor} text={EditButtonText} onClick={displayForm} />
           </div>
         </div>
-        <p>{task.description}</p>
         {showEditForm ? form : ""}
       </div>
 
