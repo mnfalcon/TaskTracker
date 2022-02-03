@@ -9,6 +9,7 @@ Task tracker project using ReactJS and Spring Boot. The deployment branch is the
 
 ## Starting the app on pc (checkout the live version on heroku at https://spretasktracker.herokuapp.com/)
 ### Open command line and 
+- go into \api\src\main\app\ and open the file package.json edit the "proxy" field to be localhost:8080
 - package the app with maven
 - go into the api/target folder
 - Run the app with java -jar ./user-0.0.1-SNAPSHOT.jar (or whatever the file is named)
