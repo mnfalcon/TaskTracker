@@ -7,20 +7,15 @@ Task tracker project using ReactJS and Spring Boot. The deployment branch is the
 - Apache Maven 3.8.4
 - PostgreSQL 14.1
 
-## Starting the app on pc (this will be updated soon, please checkout the live version on heroku at https://spretasktracker.herokuapp.com/)
+## Starting the app on pc (checkout the live version on heroku at https://spretasktracker.herokuapp.com/)
 ### Open command line and 
-- cd api
-- mvn clean install
-- cd target
-- Run the api with java -jar ./user-0.0.1-SNAPSHOT.jar
-### and then start the react app on a new terminal
-- npm install
-- go back two folders (cd - x2)
-- cd app
-- npm start
+- package the app with maven
+- go into the api/target folder
+- Run the app with java -jar ./user-0.0.1-SNAPSHOT.jar (or whatever the file is named)
+- You should now be able to access the app from the browser or the api from postman.
 
-### api port: 8080
-### react port: 3000
+### api port: localhost:8080
+<s>### react port: localhost:3000</s>
 
 ## Default login credentials:
 - username: user
