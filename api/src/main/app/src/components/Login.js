@@ -17,7 +17,10 @@ const Login = ({setToken, action}) => {
         await loginUser({
           username,
           password,
-        }).then(s => setToken(s));
+        }).then(s => {
+            if (s)
+            setToken(s);
+        });
         action()
       }
 
@@ -34,8 +37,10 @@ const Login = ({setToken, action}) => {
             username,
             email,
             password,
-          }).then(s => 
-              setToken(s));
+          }).then(s => {
+              if(s)
+              setToken(s);
+           })
           action()
         }
         else {
@@ -116,8 +121,7 @@ async function loginUser(credentials) {
       },
       body: JSON.stringify(credentials)
     })
-      .then(data => data.json())
-      .then(data => {return data})
+      .then(data => {return data.json()})
       .catch(e => console.log(e))
    }
 
@@ -129,8 +133,7 @@ async function loginUser(credentials) {
       },
       body: JSON.stringify(credentials)
     })
-      .then(data => data.json())
-      .then(data => {return data})
+      .then(data => {return data.json()})
       .catch(e => console.log(e))
    }
 

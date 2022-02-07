@@ -75,7 +75,7 @@ function getToken() {
 }
 
 async function fetchTasks() {
-  let rawData = await fetch("/api/tasks", {
+  return await fetch("/api/tasks", {
     method: "GET",
     credentials: "include",
     headers: {
@@ -84,13 +84,9 @@ async function fetchTasks() {
     },
   })
     .then((data) => {
-      return data;
+      return data.json();
     })
     .catch((e) => console.log(e));
-    if (rawData.ok){
-        let data = await rawData.json();
-        return data;
-    }
 }
 
 export default App;
